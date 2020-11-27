@@ -11,6 +11,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { Field, FieldArray, Form, Formik } from 'formik';
 import React from 'react';
 import { generate } from 'shortid';
+import { listenerCount } from 'stream';
 import * as yup from 'yup';
 import { IFormQuestion } from '../../types/index';
 import TextInput from '../controls/TextInput';
@@ -37,21 +38,16 @@ const useStyles = makeStyles((theme: Theme) =>
     answerTextField: {
       width: '95%',
     },
-    textField: {
-      '& > *': {
-        width: '250%',
-      },
-    },
     answers: {
       display: 'flex',
       alignItems: 'center',
     },
     formTitle: {
-      margin: theme.spacing(1, 0, 1, 2),
+      margin: theme.spacing(1),
       fontWeight: 'bold',
     },
     answersTitle: {
-      margin: theme.spacing(1, 0, 1, 2),
+      margin: theme.spacing(1, 0, 0, 2),
       display: 'flex',
       alignItems: 'center',
       fontWeight: 'bold',
@@ -89,6 +85,7 @@ const EditForm: React.FC<IProps> = ({ onSubmit, formData }) => {
       .of(
         yup.object().shape({
           answer: yup.string().required('Answer cant not be empty!'),
+          isCorrect: yup.boolean().required('This question need to have at least one correct answer selected')
         })
       )
       .min(2, 'Minimum of 2 answers')

@@ -22,14 +22,15 @@ export const setFormValuesToQuestion = (
   editedQuestion: IFormQuestion,
   questionDetail: IQuestion
 ): IQuestion => {
+  let correctAnswer = editedQuestion.answers.find((a) => a.isCorrect === true)
+    ?.answer!;
   return {
     ...questionDetail,
     question: editedQuestion.question,
-    correct_answer: editedQuestion.answers.find((a) => a.isCorrect === true)
-      ?.answer!,
+    correct_answer: correctAnswer,
     incorrect_answers: [
       ...editedQuestion.answers
-        .filter((v) => !v.isCorrect)
+        .filter((v) => v.answer !== correctAnswer)
         .map((a) => a.answer),
     ],
   };

@@ -1,11 +1,7 @@
-import React from 'react';
 import { shallow } from 'enzyme';
-import ReactDOM from 'react-dom';
-import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
 import App from '../App';
 import QuestionList from '../QuestionList';
-import QuestionEditor from '../QuestionEditor/index';
 
 describe('check app components contains child', () => {
   let wrapped;
