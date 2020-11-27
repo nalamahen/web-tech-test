@@ -5,7 +5,7 @@ import { getQuestions, watchGetQuestionsRequest } from '../questions';
 describe('fetch questions flow', () => {
   const generator = watchGetQuestionsRequest();
 
-  it('should wait for every fGET_QUESTIONS_REQUEST action and call getQuestions request', () => {
+  it('should wait for every GET_QUESTIONS_REQUEST action and call getQuestions request', () => {
     expect(generator.next().value).toEqual(
       takeEvery(actions.Types.GET_QUESTIONS_REQUEST, getQuestions)
     );
