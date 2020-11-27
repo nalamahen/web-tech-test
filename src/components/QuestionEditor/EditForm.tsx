@@ -85,11 +85,9 @@ const EditForm: React.FC<IProps> = ({ onSubmit, formData }) => {
       .of(
         yup.object().shape({
           answer: yup.string().required('Answer cant not be empty!'),
-          isCorrect: yup.boolean().required('This question need to have at least one correct answer selected')
         })
       )
-      .min(2, 'Minimum of 2 answers')
-      .required('Must have answers'),
+      .min(2, 'Minimum of two answers')
   });
 
   const answerArrayErrors = (errors) =>
